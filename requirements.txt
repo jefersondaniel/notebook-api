@@ -1,0 +1,10 @@
+behave==1.2.5
+Flask-RESTful==0.3.5
+Flask-Script==2.0.5
+Flask==0.10.1
+gunicorn==19.3.0
+inflect==0.2.5
+marshmallow-jsonapi==0.4.2
+marshmallow==2.4.2
+mongoengine==0.10.5
+requests==2.9.1

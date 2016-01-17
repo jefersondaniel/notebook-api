@@ -1,0 +1,6 @@
+*.pyo
+*.pyc
+*.swp
+environment.py
+venv
+
