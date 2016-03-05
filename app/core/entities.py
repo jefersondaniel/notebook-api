@@ -1,6 +1,7 @@
 import mongoengine as m
 import os
 import base64
+import re
 
 
 class Notebook(m.Document):
@@ -13,6 +14,7 @@ class Notebook(m.Document):
 
     def generate_slug(self):
         slug = base64.encodestring(os.urandom(8)).strip()
+        slug = re.sub('[^0-9A-Za-z]', '', slug)
 
         if Notebook.objects(slug=slug).count():
             slug = self.generate_slug()

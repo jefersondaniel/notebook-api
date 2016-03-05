@@ -4,10 +4,12 @@
 from flask import Flask
 from flask_script import Manager
 from flask.ext import restful
+from flask.ext.cors import CORS
 
 app = Flask(__name__)
 manager = Manager(app)
 api = restful.Api(app)
+CORS(app)
 
 from app.startup.create_app import create_app
 from framework import errors
