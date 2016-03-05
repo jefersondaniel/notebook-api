@@ -1,3 +1,4 @@
+from flask import Response
 from flask.ext.restful import Resource
 from app import api
 from app.framework.schema import input_schema, output_schema
@@ -17,6 +18,10 @@ class IndexResource(Resource):
     def get(self):
         return INDEX_RESOURCE_OUTPUT
 
+@api.resource('/loaderio-1ce3b36989f9dfba9120a873163446f7.txt')
+class LoaderResource(Resource):
+    def get(self):
+        return Response('loaderio-1ce3b36989f9dfba9120a873163446f7')
 
 @api.resource('/notebooks')
 class NotebookListResource(Resource):
