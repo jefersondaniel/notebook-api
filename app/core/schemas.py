@@ -1,6 +1,6 @@
 from marshmallow_jsonapi import fields
 from app.framework.schema import BaseSchema
-from entities import Notebook, Note
+from entities import Notebook, Note, NoteReference
 
 
 class NotebookSchema(BaseSchema):
@@ -18,7 +18,7 @@ class NotebookSchema(BaseSchema):
 
 class NoteSchema(BaseSchema):
     id = fields.Str(dump_only=True)
-    name = fields.Str(required=True)
+    resume = fields.Str(required=True)
     contents = fields.Str(required=True)
 
     notebook = fields.Relationship(
@@ -28,3 +28,12 @@ class NoteSchema(BaseSchema):
 
     class Meta:
         entity = Note
+
+
+class NoteReferenceSchema(BaseSchema):
+    id = fields.Str(dump_only=True)
+    resume = fields.Str(required=True)
+
+    class Meta:
+        entity = NoteReference
+        type_ = 'notes'

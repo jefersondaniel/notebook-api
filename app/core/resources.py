@@ -2,13 +2,14 @@ from flask import Response
 from flask.ext.restful import Resource
 from app import api
 from app.framework.schema import input_schema, output_schema
-from schemas import NotebookSchema, NoteSchema
+from schemas import NotebookSchema, NoteSchema, NoteReferenceSchema
 from entities import Note, Notebook
 
 INDEX_RESOURCE_OUTPUT = {
     'links': {
         'self': '/',
-        'notebooks': '/notebooks'
+        'notebooks': '/notebooks',
+        'notes': '/notes'
     }
 }
 
@@ -18,10 +19,6 @@ class IndexResource(Resource):
     def get(self):
         return INDEX_RESOURCE_OUTPUT
 
-@api.resource('/loaderio-1ce3b36989f9dfba9120a873163446f7.txt')
-class LoaderResource(Resource):
-    def get(self):
-        return Response('loaderio-1ce3b36989f9dfba9120a873163446f7')
 
 @api.resource('/notebooks')
 class NotebookListResource(Resource):
@@ -32,7 +29,7 @@ class NotebookListResource(Resource):
         return notebook
 
 
-@api.resource('/notebooks/<id>')
+@api.resource('/notebooks/<slug>')
 class NotebookResource(Resource):
     @input_schema(NotebookSchema())
     @output_schema(NotebookSchema())
@@ -41,13 +38,13 @@ class NotebookResource(Resource):
         return notebook
 
     @output_schema(NotebookSchema())
-    def get(self, id):
-        return Notebook.objects.get(id=id)
+    def get(self, slug):
+        return Notebook.objects.get(slug=slug)
 
 
 @api.resource('/notebooks/<notebook_slug>/notes')
 class NotebookNoteListResource(Resource):
-    @output_schema(NoteSchema(many=True))
+    @output_schema(NoteReferenceSchema(many=True))
     def get(self, notebook_slug):
         notebook = Notebook.objects.get(slug=notebook_slug)
         return notebook.notes
@@ -56,9 +53,7 @@ class NotebookNoteListResource(Resource):
     @output_schema(NoteSchema())
     def post(self, note, notebook_slug):
         notebook = Notebook.objects.get(slug=notebook_slug)
-        note.notebook = notebook
-        note.save()
-        notebook.notes.append(note)
+        notebook.add_note(note)
         notebook.save()
 
         return note
@@ -81,8 +76,9 @@ class NoteResource(Resource):
 
     def delete(self, id):
         note = Note.objects.get(id=id)
-        note.notebook.notes.remove(note)
-        note.notebook.save()
+        notebook = note.notebook
+        notebook.remove_note(note)
+        notebook.save()
         note.delete()
 
         return '', 204

@@ -8,7 +8,7 @@ Feature: Create note
                 "data": {
                     "type": "notes",
                     "attributes": {
-                        "name": "Hello World",
+                        "resume": "Hello World",
                         "contents": "Some contents"
                     }
                 }
@@ -22,7 +22,7 @@ Feature: Create note
                     "type": "notes",
                     "id": "%.+%",
                     "attributes": {
-                        "name": "Hello World",
+                        "resume": "Hello World",
                         "contents": "Some contents"
                     }
                 }

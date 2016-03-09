@@ -8,7 +8,8 @@ Feature: Show Index
             {
                 "links": {
                     "self": "/",
-                    "notebooks": "/notebooks"
+                    "notebooks": "/notebooks",
+                    "notes": "/notes"
                 }
             }
             """

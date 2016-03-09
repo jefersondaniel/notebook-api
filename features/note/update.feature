@@ -8,7 +8,7 @@ Feature: Update note
                 "data": {
                     "type": "notes",
                     "attributes": {
-                        "name": "Hello World",
+                        "resume": "Hello World",
                         "contents": "Some contents"
                     }
                 }
@@ -22,7 +22,7 @@ Feature: Update note
                     "type": "notes",
                     "id": "469ba781e138232929c00afa",
                     "attributes": {
-                        "name": "Hello World",
+                        "resume": "Hello World",
                         "contents": "Some contents"
                     }
                 }

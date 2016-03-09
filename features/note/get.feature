@@ -11,7 +11,7 @@ Feature: Update note
                     "type": "notes",
                     "id": "469ba781e138232929c00afa",
                     "attributes": {
-                        "name": "Index",
+                        "resume": "Hello World",
                         "contents": "Hello World"
                     }
                 }

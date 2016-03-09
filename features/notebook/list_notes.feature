@@ -13,8 +13,7 @@ Feature: List notes
                         "type": "notes",
                         "id": "469ba781e138232929c00afa",
                         "attributes": {
-                            "name": "Index",
-                            "contents": "Hello World"
+                            "resume": "Hello World"
                         }
                     }
                 ]

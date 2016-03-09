@@ -29,7 +29,7 @@ class BaseSchemaOpts(SchemaOpts):
     def __init__(self, meta):
         self.envelope_key = 'data'
         self.entity = getattr(meta, 'entity')
-        if (self.entity):
+        if (self.entity and not hasattr(meta, 'type_')):
             setattr(
                 meta,
                 'type_',
