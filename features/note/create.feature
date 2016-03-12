@@ -1,8 +1,8 @@
 Feature: Create note
 
     Scenario: Create note
-        When I set header "Content-Type" with value "application/json"
-        And I send a POST request to "/notebooks/custom-slug/notes" with body:
+        Given I set header "Content-Type" with value "application/json"
+        When I send a POST request to "/notebooks/custom-slug/notes" with body:
             """
             {
                 "data": {

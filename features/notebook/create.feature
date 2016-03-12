@@ -1,8 +1,8 @@
 Feature: Create notebook
 
     Scenario: Send a empty body and receive a new notebook
-        When I set header "Content-Type" with value "application/json"
-        And I send a POST request to "/notebooks" with body:
+        Given I set header "Content-Type" with value "application/json"
+        When I send a POST request to "/notebooks" with body:
             """
             {
                 "data": {
@@ -33,8 +33,8 @@ Feature: Create notebook
             """
 
     Scenario: Send a unique slug and receive a new notebook
-        When I set header "Content-Type" with value "application/json"
-        And I send a POST request to "/notebooks" with body:
+        Given I set header "Content-Type" with value "application/json"
+        When I send a POST request to "/notebooks" with body:
             """
             {
                 "data": {
@@ -68,8 +68,8 @@ Feature: Create notebook
 
 
     Scenario: Send a existing slug and receive a error
-        When I set header "Content-Type" with value "application/json"
-        And I send a POST request to "/notebooks" with body:
+        Given I set header "Content-Type" with value "application/json"
+        When I send a POST request to "/notebooks" with body:
             """
             {
                 "data": {

@@ -1,4 +1,5 @@
 behave==1.2.5
+behave-web-api>=1.0.6
 Flask-RESTful==0.3.5
 Flask-Script==2.0.5
 Flask==0.10.1

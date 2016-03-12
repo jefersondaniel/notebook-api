@@ -1,8 +1,8 @@
 Feature: Update note
 
     Scenario: Update note
-        When I set header "Content-Type" with value "application/json"
-        And I send a PUT request to "/notes/469ba781e138232929c00afa" with body:
+        Given I set header "Content-Type" with value "application/json"
+        When I send a PUT request to "/notes/469ba781e138232929c00afa" with body:
             """
             {
                 "data": {
