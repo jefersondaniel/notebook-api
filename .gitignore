@@ -1,4 +1,5 @@
 *.pyo
 *.pyc
 *.swp
+nohup.out
 venv

@@ -1,16 +1,16 @@
-sudo: required
-
 services:
-  - docker
+  - mongodb
+
+language: python
+
+python:
+  - "2.7"
 
 env:
-  DOCKER_COMPOSE_VERSION: 1.4.2
+  BASE_URL: localhost:8000
 
-before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
+before_script:
+  - "pip install -r requirements.txt"
 
 script:
-- bash runtests.sh
+  - "(nohup gunicorn -b localhost:8000 manage:app && sleep 3) && behave"
