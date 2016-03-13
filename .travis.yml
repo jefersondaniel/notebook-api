@@ -13,4 +13,4 @@ before_script:
   - "pip install -r requirements.txt"
 
 script:
-  - "(nohup gunicorn -b localhost:8000 manage:app && sleep 3) && behave"
+  - "(nohup gunicorn -b localhost:8000 manage:app &) && sleep 3 && behave"
