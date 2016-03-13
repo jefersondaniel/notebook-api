@@ -10,7 +10,8 @@ def load_dummies():
     db = client[app.config['DATABASE_NAME']]
 
     for name in db.collection_names():
-        db.drop_collection(name)
+        if name in ['note', 'notebook']:
+            db.drop_collection(name)
 
     for name in dummies:
         documents = dummies[name]
